@@ -1,4 +1,4 @@
-package com.example.realtimedatabase
+package com.example.realtimedatabase.a
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -10,11 +10,8 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import com.example.realtimedatabase.ui.theme.RealTimeDataBaseTheme
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -28,7 +25,7 @@ class MainActivity : ComponentActivity() {
         startKoin {
             androidContext(this@MainActivity)
             androidLogger()
-            modules(appModule)
+            modules(appModule1)
         }
         setContent {
             RealTimeDataBaseTheme {
@@ -45,7 +42,7 @@ class MainActivity : ComponentActivity() {
                     }
 
                 ) {
-                    RealTimeScreen(isInsert)
+                    RealTimeScreen1(isInsert)
 
                 }
             }

@@ -1,4 +1,4 @@
-package com.example.realtimedatabase
+package com.example.realtimedatabase.a
 
 import android.widget.Toast
 import androidx.compose.foundation.clickable
@@ -46,14 +46,14 @@ import org.koin.compose.koinInject
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun RealTimeScreen(isInsert: MutableState<Boolean>) {
-    val viewModel: RealTimeViewModel = koinInject()
-    val scope = rememberCoroutineScope()
+fun RealTimeScreen1(isInsert: MutableState<Boolean>) {
+    val viewModel1: RealTimeViewModel1 = koinInject()
+    val scope1 = rememberCoroutineScope()
     val context = LocalContext.current
     var tittle by remember {
         mutableStateOf("")
     }
-    val res = viewModel.res.value
+    val res = viewModel1.res1.value
     var des by remember {
         mutableStateOf("")
     }
@@ -71,97 +71,96 @@ fun RealTimeScreen(isInsert: MutableState<Boolean>) {
 
     if (isInsert.value) {
 
-        AlertDialog(onDismissRequest = { isInsert.value = false }) {
-
-            Column(
-                Modifier
-                    .fillMaxWidth()
-                    .padding(10.dp),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-
-
-                TextField(value = tittle, onValueChange = {
-                    tittle = it
-                }, placeholder = {
-                    Text(text = "Tittle")
-                })
+       AlertDialog(onDismissRequest = { isInsert.value=false }, confirmButton = {  },
+           text = {
+               Column(
+                   Modifier
+                       .fillMaxWidth()
+                       .padding(10.dp),
+                   horizontalAlignment = Alignment.CenterHorizontally
+               ) {
+                   TextField(value = tittle, onValueChange = {
+                       tittle = it
+                   }, placeholder = {
+                       Text(text = "Tittle")
+                   },)
 
 
-                Spacer(modifier = Modifier.height(10.dp))
+                   Spacer(modifier = Modifier.height(10.dp))
 
 
-                TextField(value = des, onValueChange = {
-                    des = it
-                }, placeholder = {
-                    Text(text = "Description")
-                })
+                   TextField(value = des, onValueChange = {
+                       des = it
+                   }, placeholder = {
+                       Text(text = "Description")
+                   },)
 
 
-                Spacer(modifier = Modifier.height(10.dp))
+                   Spacer(modifier = Modifier.height(10.dp))
 
 
-                Button(
-                    onClick = {
-                        scope.launch {
-                            viewModel.insert(
-                                RealTimeModelResponse.RealTimeItems(
-                                    tittle = tittle,
-                                    description = des
-                                )
-                            ).collect {
-                                when (it) {
-                                    is ResultState.Error -> {
-                                        circularProgressBar = false
-                                        Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
-                                    }
+                   Button(
+                       onClick = {
+                           scope1.launch {
+                               viewModel1.insert1(
+                                   RealTimeModelResponse1.RealTimeItems1(
+                                       tittle = tittle,
+                                       description = des
+                                   )
+                               ).collect {
+                                   when (it) {
+                                       is ResultState1.Error -> {
+                                           circularProgressBar = false
+                                           Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
+                                       }
 
-                                    ResultState.Loading -> {
-                                        circularProgressBar = true
-                                    }
+                                       ResultState1.Loading -> {
+                                           circularProgressBar = true
+                                       }
 
-                                    is ResultState.Success -> {
-                                        isInsert.value = false
-                                        circularProgressBar = false
-                                        Toast.makeText(context, "${it.data}", Toast.LENGTH_SHORT)
-                                            .show()
-                                    }
-                                }
-                            }
-                        }
-                    }, modifier = Modifier
-                        .fillMaxWidth()
-                        .align(Alignment.CenterHorizontally)
-                ) {
-                    Text(text = "Save", fontSize = 17.sp, fontWeight = FontWeight.SemiBold)
-                }
-            }
-        }
+                                       is ResultState1.Success -> {
+                                           isInsert.value = false
+                                           circularProgressBar = false
+                                           Toast.makeText(context, "${it.data}", Toast.LENGTH_SHORT)
+                                               .show()
+                                       }
+                                   }
+                               }
+                           }
+                       }, modifier = Modifier
+                           .fillMaxWidth()
+                           .align(Alignment.CenterHorizontally)
+                   ) {
+                       Text(text = "Save", fontSize = 17.sp, fontWeight = FontWeight.SemiBold)
+                   }
+               }
+           }
+           )
     }
 
 
     if (res.item.isNotEmpty()) {
-        LazyColumn(modifier = Modifier.padding(top = 70.dp)) {
+        LazyColumn(modifier = Modifier.padding(top = 70.dp), verticalArrangement = Arrangement.spacedBy(10.dp)) {
             items(res.item, key = { it.key!! }) { res ->
-                EachRow(itemState = res.item!!,
+                EachRow1(itemState = res.item!!,
                     onUpdate = {
                         isUpdate.value = true
-                        viewModel.setData(res)
+                        viewModel1.setData1(res)
                     }
                 ) {
-                    scope.launch(Dispatchers.Main) {
-                        viewModel.delete(res.key!!).collect {
+                    scope1.launch(Dispatchers.Main) {
+                        viewModel1.delete(res.key!!).collect {
                             when (it) {
-                                is ResultState.Error -> {
+                                is ResultState1.Error -> {
                                     isUpdate.value = false
                                     Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
                                 }
 
-                                ResultState.Loading -> {
+                                ResultState1.Loading -> {
                                     isUpdate.value = true
                                 }
 
-                                is ResultState.Success -> {
+                                is ResultState1.Success -> {
 
                                     isUpdate.value = false
                                     Toast.makeText(context, "${it.data}", Toast.LENGTH_SHORT)
@@ -188,14 +187,14 @@ fun RealTimeScreen(isInsert: MutableState<Boolean>) {
     }
 
     if (isUpdate.value) {
-        Update(isUpdate = isUpdate, itemState = viewModel.updatedRes.value, viewModel = viewModel)
+        Update1(isUpdate = isUpdate, itemState = viewModel1.updatedRes1.value, viewModel = viewModel1)
     }
 
 }
 
 @Composable
-fun EachRow(
-    itemState: RealTimeModelResponse.RealTimeItems,
+fun EachRow1(
+    itemState: RealTimeModelResponse1.RealTimeItems1,
     onUpdate: () -> Unit = {},
     onDelete: () -> Unit = {}
 ) {
@@ -251,10 +250,10 @@ fun EachRow(
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun Update(
+fun Update1(
     isUpdate: MutableState<Boolean>,
-    itemState: RealTimeModelResponse,
-    viewModel: RealTimeViewModel
+    itemState: RealTimeModelResponse1,
+    viewModel: RealTimeViewModel1
 ) {
     var tittle by remember {
         mutableStateOf(itemState.item?.tittle)
@@ -304,10 +303,10 @@ fun Update(
                     onClick = {
                         scope.launch(Dispatchers.Main) {
                             viewModel.update(
-                                RealTimeModelResponse(
+                                RealTimeModelResponse1(
                                     item = tittle?.let {
                                         des?.let { it1 ->
-                                            RealTimeModelResponse.RealTimeItems(
+                                            RealTimeModelResponse1.RealTimeItems1(
                                                 it, it1
                                             )
                                         }
@@ -315,16 +314,16 @@ fun Update(
                                 )
                             ).collect {
                                 when (it) {
-                                    is ResultState.Error -> {
+                                    is ResultState1.Error -> {
                                         isUpdate.value = false
                                         Toast.makeText(context, "$it", Toast.LENGTH_SHORT).show()
                                     }
 
-                                    ResultState.Loading -> {
+                                    ResultState1.Loading -> {
                                         isUpdate.value = true
                                     }
 
-                                    is ResultState.Success -> {
+                                    is ResultState1.Success -> {
 
                                         isUpdate.value = false
                                         Toast.makeText(context, "${it.data}", Toast.LENGTH_SHORT)

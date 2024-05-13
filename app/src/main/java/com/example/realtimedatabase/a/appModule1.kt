@@ -1,18 +1,12 @@
-package com.example.realtimedatabase
+package com.example.realtimedatabase.a
 
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
-import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.withOptions
-import org.koin.core.qualifier.Qualifier
 import org.koin.core.qualifier.qualifier
-import org.koin.core.scope.get
 import org.koin.dsl.module
 
-val appModule = module {
+val appModule1 = module {
 
 
     single<DatabaseReference> {
@@ -20,9 +14,9 @@ val appModule = module {
     } withOptions {
         qualifier("FirebaseDb")
     }
-    single<RealTimeRepository> { RealTimeDbRepository(get()) }
+    single<RealTimeRepository1> { RealTimeDbRepository1(get()) }
     single {
-        RealTimeViewModel(get())
+        RealTimeViewModel1(get())
     }
 
 }
