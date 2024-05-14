@@ -25,5 +25,6 @@ Let's chat about potential projects, job opportunities, or any other collaborati
 
 ## Screen Shots
 
-| ![Screenshot 1](https://github.com/ZohaibKhanDev/LoginAuth/blob/master/assests/screenshots.txt/1.png) | ![Screenshot 2](https://github.com/ZohaibKhanDev/LoginAuth/blob/master/assests/screenshots.txt/2.png) | ![Screenshot 3](https://github.com/ZohaibKhanDev/LoginAuth/blob/master/assests/screenshots.txt/3.png) |
+| ![Screenshot 1](https://github.com/ZohaibKhanDev/RealTimeDataBase/blob/master/assests/1.png) | ![Screenshot 2](https://github.com/ZohaibKhanDev/RealTimeDataBase/blob/master/assests/3.png) | ![Screenshot 3](https://github.com/ZohaibKhanDev/RealTimeDataBase/blob/master/assests/3.png) |
 | --- | --- | --- |
+| ![Screenshot 3](https://github.com/ZohaibKhanDev/RealTimeDataBase/blob/master/assests/4.png) |
