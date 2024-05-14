@@ -10,7 +10,7 @@
 - **Low latency**
 - **Offline support**
 - **Conflict resolution**
-- 
+- **Scalability**
 -
 -
 
