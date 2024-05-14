@@ -7,7 +7,7 @@
 
 ## 🚀 Key Features
 - **Real-time synchronization**
-- ** **
+- **Low latency**
 - ** **
 - 
 - 
