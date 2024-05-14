@@ -8,7 +8,7 @@
 ## 🚀 Key Features
 - **Real-time synchronization**
 - **Low latency**
-- ** **
+- **Offline support**
 - 
 - 
 -
