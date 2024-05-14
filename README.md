@@ -6,7 +6,7 @@
 
 
 ## 🚀 Key Features
-- ** **
+- **Real-time synchronization**
 - ** **
 - ** **
 - 
