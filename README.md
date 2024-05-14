@@ -11,7 +11,7 @@
 - **Offline support**
 - **Conflict resolution**
 - **Scalability**
--
+- **Security**
 -
 
 ## 🤝 Connect with Me
